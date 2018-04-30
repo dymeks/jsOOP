@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function Ninja(name)
+		{
+			const self = this;
+			const speed = 3;
+			const strength = 3;
+			this.health = 100;
+			this.name = name
+
+			this.sayName = function()
+			{
+				console.log("My ninja name is "+ this.name);
+				return self;
+			}
+
+			this.showStats = function()
+			{
+				console.log("Name: " + this.name)
+				console.log("Speed: " + speed);
+				console.log("Strength: " + strength);
+				console.log("Health: " + this.health);
+				return self;
+
+			}
+
+			this.drinkSake = function()
+			{
+				this.health += 10;
+				return self;
+			}
+
+			this.punch = function(ninja)
+			{
+				if(ninja instanceof Ninja)
+				{
+					ninja.health -= 5;
+					console.log(ninja.name + " was punched by " + this.name + " and lost 5 health");
+					return self;
+				}
+				
+			}
+
+			this.kick = function(ninja)
+			{
+				if(ninja instanceof Ninja)
+				{
+					var damageTaken = strength * 15;
+					ninja.health -= damageTaken;
+					console.log(ninja.name + " was kicked by " + this.name + " and lost 15 health");
+					return self;
+				}
+				
+
+			}
+		}
+
+		const ninja = new Ninja("ninjamaster");
+		const blueNinja = new Ninja("Goemon");
+		const redNinja = new Ninja("Bill Gates");
+
+		ninja.sayName().showStats();
+		// ninja.showStats();
+		ninja.drinkSake().showStats();
+		ninja.punch(blueNinja).kick("");
+		blueNinja.showStats();
+
+
+
+	</script>
+</body>
+</html>

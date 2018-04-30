@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Ninja {
+			constructor(name)
+			{
+				this.speed = 3;
+				this.strength = 3;
+				this.health = 100;
+				this.name = name;
+			}
+
+			sayName()
+			{
+				console.log("My ninja name is "+ this.name);
+				return this;
+			}
+
+			showStats()
+			{
+				console.log("Name: " + this.name)
+				console.log("Speed: " + this.speed);
+				console.log("Strength: " + this.strength);
+				console.log("Health: " + this.health);
+				return this;
+			}
+
+			drinkSake()
+			{
+				this.health += 10;
+				return this;
+			}
+
+			punch(ninja)
+			{
+				if(ninja instanceof Ninja)
+				{
+					ninja.health -= 5;
+					console.log(ninja.name + " was punched by " + this.name + " and lost 5 health");
+					return this;
+				}
+			}
+
+			kick(ninja)
+			{
+				if(ninja instanceof Ninja)
+				{
+					var damageTaken = strength * 15;
+					ninja.health -= damageTaken;
+					console.log(ninja.name + " was kicked by " + this.name + " and lost 15 health");
+					return this;
+				}
+			}
+		}
+
+		class Sensei extends Ninja
+		{
+			constructor(name)
+			{
+				super(name);
+				this.name = name;
+				this.health = 200;
+				this.speed = 10;
+				this.strength = 10;
+				this.wisdom = 10;
+
+			}
+
+			speakWisdom()
+			{
+				super.drinkSake();
+				console.log("The mind needs books like a sword needs a whetstone, if it is to keep its edge.")
+			}
+
+
+		}
+
+		const ninja = new Ninja("ninjamaster");
+		const blueNinja = new Ninja("Goemon");
+		const redNinja = new Ninja("Bill Gates");
+
+		ninja.sayName().showStats();
+		// ninja.showStats();
+		ninja.drinkSake().showStats();
+		ninja.punch(blueNinja).kick("");
+		blueNinja.showStats();
+
+		const superSensei = new Sensei("Master Splinter");
+		superSensei.speakWisdom();
+		// -> "What one programmer can do in one month, two programmers can do in two months."
+		superSensei.showStats();
+	</script>
+</body>
+</html>
